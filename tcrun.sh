@@ -9,7 +9,7 @@ CLIENT2_IP=10.0.2.6/32
 CLIENT_SUBNET_IP=10.0.2.0/24
 
 # setup bandwidth limitation values
-CH1_LIM=16
+CH1_LIM=4
 CH2_LIM=2
 CH3_LIM=1
 
