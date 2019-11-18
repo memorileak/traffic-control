@@ -31,8 +31,8 @@ tc class add dev $DEVICE parent 1:0 classid 1:2 htb rate "$CH2_LIM"Mbit ceil "$(
 tc class add dev $DEVICE parent 1:0 classid 1:3 htb rate "$CH3_LIM"Mbit ceil "$((CH3_LIM + 1))"Mbit
 
 tc filter add dev $DEVICE parent 1:0 protocol ip prio 1 u32 match ip dst $CLIENT1_IP flowid 1:1
-tc filter add dev $DEVICE parent 1:0 protocol ip prio 1 u32 match ip dst $CLIENT2_IP flowid 1:2
-tc filter add dev $DEVICE parent 1:0 protocol ip prio 2 u32 match ip dst $CLIENT_SUBNET_IP flowid 1:3
+tc filter add dev $DEVICE parent 1:0 protocol ip prio 2 u32 match ip dst $CLIENT2_IP flowid 1:2
+tc filter add dev $DEVICE parent 1:0 protocol ip prio 3 u32 match ip dst $CLIENT_SUBNET_IP flowid 1:3
 
 # limit upload speed
 tc qdisc del dev ifb0 root
@@ -43,5 +43,5 @@ tc class add dev ifb0 parent 1:0 classid 1:2 htb rate "$CH2_LIM"Mbit ceil "$((CH
 tc class add dev ifb0 parent 1:0 classid 1:3 htb rate "$CH3_LIM"Mbit ceil "$((CH3_LIM + 1))"Mbit
 
 tc filter add dev ifb0 parent 1:0 protocol ip prio 1 u32 match ip src $CLIENT1_IP flowid 1:1
-tc filter add dev ifb0 parent 1:0 protocol ip prio 1 u32 match ip src $CLIENT2_IP flowid 1:2
-tc filter add dev ifb0 parent 1:0 protocol ip prio 2 u32 match ip src $CLIENT_SUBNET_IP flowid 1:3
+tc filter add dev ifb0 parent 1:0 protocol ip prio 2 u32 match ip src $CLIENT2_IP flowid 1:2
+tc filter add dev ifb0 parent 1:0 protocol ip prio 3 u32 match ip src $CLIENT_SUBNET_IP flowid 1:3
